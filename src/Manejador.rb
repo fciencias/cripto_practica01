@@ -1,5 +1,4 @@
 =begin
-ñ
 =end
 
 class Manejador
@@ -7,13 +6,17 @@ class Manejador
   TEXTO_LIMPIO = "texto_limpio.txt"
   attr_reader :contenido
   
+  ## Crea una instancia de la clase manejador, la cual se encarga
+  # de manejar los archivos, Abrir archivos, Guardar archivos 
+  # y limpiar archivos.
   def initialize(ruta)
     aux = File.expand_path(ruta)
     @ruta_archivo = aux
     @contenido = ""
   end
   
-  
+  ## Se encarga de abrir el archivo que se especifico
+  # cuando se creo la clase en el nombre de la ruta.
   def leer_archivo
     puts "Leyendo archivo..."
     file = nil
@@ -64,6 +67,16 @@ class Manejador
       return true
     else 
       return false
+    end
+  end
+  
+  ##
+  #
+  def guardar_archivo(nombre_archivo)
+    puts "Guardando..."
+    nombre = nombre_archivo + ".txt"
+    File.open(nombre,'w') do |archivo|
+      archivo.puts @contenido
     end
   end
   
