@@ -80,4 +80,6 @@ class Manejador
     end
   end
   
+  private :verificador_ruta
+  
 end
