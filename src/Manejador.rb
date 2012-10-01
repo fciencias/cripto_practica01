@@ -1,10 +1,10 @@
+# -*- coding: utf-8 -*-
 =begin
 =end
 
 class Manejador
   
   TEXTO_LIMPIO = "texto_limpio.txt"
-  attr_reader :contenido
   
   ## Crea una instancia de la clase manejador, la cual se encarga
   # de manejar los archivos, Abrir archivos, Guardar archivos 
@@ -14,18 +14,20 @@ class Manejador
     @ruta_archivo = aux
     @contenido = ""
   end
+
+  attr_reader :contenido
   
   ## Se encarga de abrir el archivo que se especifico
   # cuando se creo la clase en el nombre de la ruta.
   def leer_archivo
     puts "Leyendo archivo..."
-    file = nil
     valido = verificador_ruta
     if valido
-      file = File.open("#{@ruta_archivo}", 'r')
-      file do |archivo|
-      while linea = archivo.gets
-        @contenido.concat(linea)
+      puts "La ruta es valida"
+      File.open("#{@ruta_archivo}", 'r') do |archivo|
+        while linea = archivo.gets
+          @contenido.concat(linea)
+        end
       end
     end
   end
