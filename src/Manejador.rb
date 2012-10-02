@@ -19,12 +19,12 @@ class Manejador
   
   ## Se encarga de abrir el archivo que se especifico
   # cuando se creo la clase en el nombre de la ruta.
-  def leer_archivo
+  def leer_archivo(nombre="#{@ruta_archivo}")
     puts "Leyendo archivo..."
     valido = verificador_ruta
     if valido
       puts "La ruta es valida"
-      File.open("#{@ruta_archivo}", 'r') do |archivo|
+      File.open(nombre, 'r') do |archivo|
         while linea = archivo.gets
           @contenido.concat(linea)
         end
@@ -39,7 +39,7 @@ class Manejador
     valido = verificador_ruta
     if valido
       puts "Limpiando..."
-      system("sed 'y/\á\é\í\ó\ú\ñ\ü\Á\É\Í\Ó\Ú\Ñ/aeiounuAEIOUN/' #{@ruta_archivo} > tmp")
+      system("sed 'y/\á\é\í\ó\ú\ñ\ü\Á\É\Í\Ó\Ú\Ñ/aeiounuaeioun/' #{@ruta_archivo} > tmp")
       system("cat tmp | tr -d '.' > tmp2")
       system("cat tmp2 | tr -d ',' > tmp")
       system("cat tmp | tr -d '(' > tmp2")
@@ -47,10 +47,11 @@ class Manejador
       system("cat tmp | tr -d ':' > tmp2")
       system("cat tmp2 | tr -d ';' > tmp")
       system("sed 's/[ ]//g' tmp > tmp3")
-      system("cat tmp3 | tr -d '\n' > tmp")
+      system("sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/' tmp3 > tmp4")
+      system("cat tmp4 | tr -d '\n' > tmp")
       system("cat tmp > #{TEXTO_LIMPIO}")
-      system("rm tmp2")
-      system("rm tmp3")
+      system("rm tmp ; rm tmp2")
+      system("rm tmp3; rm tmp4")
     end
   end
   
@@ -74,11 +75,11 @@ class Manejador
   
   ##
   #
-  def guardar_archivo(nombre_archivo)
+  def guardar_archivo(nombre_archivo, in_file="#{@contenido}")
     puts "Guardando..."
     nombre = nombre_archivo + ".txt"
     File.open(nombre,'w') do |archivo|
-      archivo.puts @contenido
+      archivo.puts in_file
     end
   end
   

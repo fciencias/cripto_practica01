@@ -43,7 +43,9 @@ class Generales
   ##
   #
   def n_gramas(indice)
+	encontrados = Array.new
     tamano_texto = @texto.length
+    n_gramas = @texto.clone
     if indice > 7 || indice < 2
       puts "Solo puedo darte de 2 a 7 -gramas"
       return
@@ -52,7 +54,13 @@ class Generales
     10.times do |i|
       frecuen = arreglo[i]
       letra = frecuen[0]
-      puts letra
+      #0.upto(tamano_texto) do {|posicion|
+		#caracter = n_gramas[posicion]
+		#repeticion = 
+		#if letra == caracter
+		#  
+		#end
+	  #}
     end
     
   end
@@ -86,6 +94,6 @@ class Generales
   
 end #class
 
-grl = Generales.new("vigenere_completo.txt")
-#grl.frecuencias
-grl.n_gramas(7)
+#grl = Generales.new("vigenere_completo.txt")
+#grl.frecuencias(true)
+#grl.n_gramas(7)
