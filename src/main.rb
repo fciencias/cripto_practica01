@@ -74,6 +74,7 @@ class Principal
   
 end
 
+## Se ejecuta el main
 if __FILE__ == $0
   
   _main = Principal.new
