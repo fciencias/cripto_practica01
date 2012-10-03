@@ -19,6 +19,8 @@ class Manejador
   
   ## Se encarga de abrir el archivo que se especifico
   # cuando se creo la clase en el nombre de la ruta.
+  # nombre: se abre por omision el archivo que se especifico al crear la
+  # instancia o se le da un nuevo archivo para abrir.
   def leer_archivo(nombre="#{@ruta_archivo}")
     puts "Leyendo archivo..."
     valido = verificador_ruta
@@ -32,7 +34,7 @@ class Manejador
     end
   end
   
-  ## Dado untexto en español se encarga de pasarlo en limpio,
+  ## Dado un texto en español se encarga de pasarlo en limpio,
   # esto es sin signos de puntuacion y sin acentos, ademas de 
   # las letras usadas en español como la ñ, etc.
   def limpiar_texto
@@ -74,8 +76,9 @@ class Manejador
     end
   end
   
-  ##
-  #
+  ## Se encarga de guardar archivos en el disco duro.
+  # nombre_archivo: El nombre con que se guardara el archivo en el disco.
+  # in_file: El contenido del archivo.
   def guardar_archivo(nombre_archivo, in_file="#{@contenido}")
     puts "Guardando..."
     nombre = nombre_archivo + ".txt"

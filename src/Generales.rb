@@ -10,8 +10,8 @@ class Generales
   TAMANO = 26
   @texto = nil
 
-  ##
-  #
+  ## Crea una instancia de la clase generales que se encarga de calcular
+  # las funciones mas comunes para hacer cripto analisis.
   def initialize(arg_manejador)
     manejador = arg_manejador
     manejador.leer_archivo
@@ -40,16 +40,16 @@ class Generales
       return sorted
   end
 
-  ##
-  def n_gramas()
+  ## Se encarga de buscar los n-gramas en un texto de tamanos 2,3,4,5,6 y 7
+  def n_gramas
     for i in 2...8
       busca_n_gramas(i)
     end
   end
 
 
-  ##
-  #
+  ## Se encarga de buscar en un texto las repeticiones de tamano n
+  # indice_: el tamano de la palabra que se desea buscar.
   def busca_n_gramas(indice_)
     encontrados = Array.new
     tamano_texto = @texto.length
@@ -115,13 +115,3 @@ class Generales
   attr_reader :texto
   
 end #class
-
-#mn = Manejador.new("vigenere_completo.txt")
-#grl = Generales.new(mn)
-#grl.frecuencias(true)
-#grl.n_gramas
-#puts ar[0]
-#n = ar.length
-#n.times do |i|
-#  puts ar[i]
-#end

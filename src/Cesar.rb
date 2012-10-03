@@ -14,9 +14,11 @@ class Cesar
 
   ## Crea una instancia de la clase Cesar, la cual se encarga de
   # leer un archivo y limpiarlo de caracteres especiales.
-  # _ruta: es la ruta del archivo a leer
-  # encriptar: un booleano que nos indica si el archivo se va a encriptar
-  # o false si el archivo esta encriptado.
+  # arg_manejador: es el manejador de archivos que se encarga de leer 
+  # y escribir archivos.
+  # encriptar: un booleano que nos indica si el archivo se va a
+  # encriptar, true si el archivo se encriptara o false si el 
+  # archivo esta encriptado.
   def initialize(arg_manejador, encriptar)
     @manejador = arg_manejador
     if encriptar
@@ -47,9 +49,10 @@ class Cesar
   end
   
   
-  ## 
-  #
-  #
+  ## Se encarga de desencriptar un texto que se encuentre 
+  # cifrado en modo Cesar y guarda el texto claro en un archivo 
+  # de texto llamado "texto_cesar_desencriptado.txt".
+  # _desplazamiento: El desplazamiento que se utilizo para cifrar.
   def des_encriptar_cesar(_desplazamiento)
     texto_desencriptado = ""
     mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

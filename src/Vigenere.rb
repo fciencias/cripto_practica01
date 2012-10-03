@@ -30,8 +30,10 @@ class Vigenere
     end
   end
   
-  ##
-  #
+  ## Dado un texto, el metodo se encarga de cifrarlo con el metodo
+  # de Vigenere estandar, el cual dado una llave y la tabla de vigenere
+  # lo cifra.
+  # llave: la llave con la que se cifrara el texto.
   def cifra_vigenere(llave)
     cifrado = ""
     longitud = @texto.length
@@ -47,8 +49,9 @@ class Vigenere
     puts cifrado
   end
   
-  ##
-  #
+  ## Dado un texto cifrado con vigenere estandar, se encarga de 
+  # desencriptarlo.
+  # llave: La llave para desencriptar vigenere estandar,
   def des_cifra_vigenere(llave)
     claro = ""
     longitud = @texto.length
@@ -66,6 +69,8 @@ class Vigenere
   end
 
 
+  ## Dado un caracter, el metodo se encarga de escribir el alfabeto
+  # empezando con ese caracter.
   def corrimiento(car)
     tam = MINUSCULAS.length
     indice = MAYUSCULAS.index(car)

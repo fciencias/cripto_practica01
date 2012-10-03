@@ -18,8 +18,7 @@ class Principal
     STDOUT.flush
   end
 
-  ##
-  #
+  ## Metodo que se invoca para que el programa se ejecute
   def correr
     puts MENU
     print "Que Deseas Hacer? \n>> "
