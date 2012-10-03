@@ -13,9 +13,12 @@ class Cesar
   @manejador = nil
 
   ## Crea una instancia de la clase Cesar, la cual se encarga de
-  # leer un archivo y limpiarlo de caracteres especiales. 
-  def initialize(_ruta, encriptar)
-    @manejador = Manejador.new(_ruta)
+  # leer un archivo y limpiarlo de caracteres especiales.
+  # _ruta: es la ruta del archivo a leer
+  # encriptar: un booleano que nos indica si el archivo se va a encriptar
+  # o false si el archivo esta encriptado.
+  def initialize(arg_manejador, encriptar)
+    @manejador = arg_manejador
     if encriptar
       @manejador.limpiar_texto
       @manejador.leer_archivo("#{TEXTO_LIMPIO}")
@@ -52,7 +55,7 @@ class Cesar
     mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     minusculas = mayusculas.downcase
     @texto.each_char { |car|
-      puts car
+      #puts car
       indice = mayusculas.index(car)
       if indice != nil
         desplazamiento_cifrar = (indice - _desplazamiento) % 26

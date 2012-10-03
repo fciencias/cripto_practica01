@@ -12,8 +12,8 @@ class Generales
 
   ##
   #
-  def initialize(_ruta_archivo)
-    manejador = Manejador.new(_ruta_archivo)
+  def initialize(arg_manejador)
+    manejador = arg_manejador
     manejador.leer_archivo
     @texto = manejador.contenido
   end
@@ -41,12 +41,20 @@ class Generales
   end
 
   ##
+  def n_gramas()
+    for i in 2...8
+      busca_n_gramas(i)
+    end
+  end
+
+
+  ##
   #
-  def n_gramas(indice)
-	encontrados = Array.new
+  def busca_n_gramas(indice_)
+    encontrados = Array.new
     tamano_texto = @texto.length
     n_gramas = @texto.clone
-    if indice > 7 || indice < 2
+    if indice_ > 7 || indice_ < 2
       puts "Solo puedo darte de 2 a 7 -gramas"
       return
     end
@@ -54,15 +62,29 @@ class Generales
     10.times do |i|
       frecuen = arreglo[i]
       letra = frecuen[0]
-      #0.upto(tamano_texto) do {|posicion|
-		#caracter = n_gramas[posicion]
-		#repeticion = 
-		#if letra == caracter
-		#  
-		#end
-	  #}
+      caracter = letra.dup
+      j = 0
+      sig = nil
+      ant = nil
+      while true
+        en_texto = "" << n_gramas[j]
+        if caracter.eql?(en_texto)
+          sig = n_gramas[j...j+indice_]
+          ant = n_gramas[j+1-indice_..j]
+          rep_s = n_gramas.scan(sig).size
+          rep_a = n_gramas.scan(ant).size
+          if rep_s > 2
+            salida = sig + " -- " + rep_s.to_s
+            salida2 = ant + " -- " + rep_a.to_s
+            puts salida
+            puts salida2
+          end
+          break
+        end#if
+        j = j.succ  
+      end#e while
     end
-    
+    return encontrados
   end
 
   ## Ordena una tabla has usando el algorito de selection sort, que
@@ -94,6 +116,12 @@ class Generales
   
 end #class
 
-#grl = Generales.new("vigenere_completo.txt")
+#mn = Manejador.new("vigenere_completo.txt")
+#grl = Generales.new(mn)
 #grl.frecuencias(true)
-#grl.n_gramas(7)
+#grl.n_gramas
+#puts ar[0]
+#n = ar.length
+#n.times do |i|
+#  puts ar[i]
+#end

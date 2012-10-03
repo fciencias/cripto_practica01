@@ -46,7 +46,8 @@ class Manejador
       system("cat tmp2 | tr -d ')' > tmp")
       system("cat tmp | tr -d ':' > tmp2")
       system("cat tmp2 | tr -d ';' > tmp")
-      system("sed 's/[ ]//g' tmp > tmp3")
+      system("cat tmp | tr -d '\n' > tmp2")
+      system("sed 's/[ ]//g' tmp2 > tmp3")
       system("sed 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/' tmp3 > tmp4")
       system("cat tmp4 | tr -d '\n' > tmp")
       system("cat tmp > #{TEXTO_LIMPIO}")
@@ -81,6 +82,7 @@ class Manejador
     File.open(nombre,'w') do |archivo|
       archivo.puts in_file
     end
+    puts "Guarde el archivo en: " + nombre
   end
   
   private :verificador_ruta
